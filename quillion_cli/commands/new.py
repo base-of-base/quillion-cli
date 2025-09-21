@@ -1,7 +1,8 @@
 import typing as t
-
 import typer
 from pathlib import Path
+
+from quillion_cli.utils.file_downloader import downloads_assets
 
 from ..debug.debugger import debugger
 from ..utils.templates import process_templates
@@ -12,9 +13,6 @@ def new_command(
     port: int = typer.Option(1337, "--port", "-p", help="Default server port"),
     host: str = typer.Option("127.0.0.1", "--host", help="Default server host"),
     http_port: int = typer.Option(8000, "--http-port", help="Default HTTP server port"),
-    template: str = typer.Option(
-        "default", "--template", "-t", help="Template to use for initialization"
-    ),
 ):
     """Create new Quillion project"""
     debugger.banner()
@@ -38,7 +36,7 @@ def new_command(
         "port": port,
         "host": host,
         "http_port": http_port,
-        "websocket_addr": f"ws://{host}:{port}",
+        "websocket_address": f"ws://{host}:{port}",
         "app_name": name.capitalize(),
     }
 
@@ -49,6 +47,8 @@ def new_command(
         raise typer.Exit(1)
 
     process_templates(str(project_dir), context, templates_dir)
+
+    downloads_assets(project_dir)
 
     debugger.success(f"Project '{name}' created in {project_dir}")
     debugger.info(f"Run with: q run {name}")

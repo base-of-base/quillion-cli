@@ -1,0 +1,15 @@
+{
+  "name": "quillion-wasm",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "quillion_bg.wasm",
+    "quillion.js",
+    "quillion.d.ts"
+  ],
+  "main": "quillion.js",
+  "types": "quillion.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

@@ -14,9 +14,6 @@ watchdog = "^6.0.0"
 jinja2 = "^3.1.2"
 tomli = "^2.0.1"
 
-[tool.poetry.scripts]
-q = "quillion_cli.cli:app"
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

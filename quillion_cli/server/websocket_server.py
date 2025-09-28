@@ -2,7 +2,6 @@ import contextlib
 import os
 import subprocess
 import sys
-import time
 import typing as t
 from pathlib import Path
 
@@ -12,6 +11,7 @@ from ..debug.debugger import debugger
 def run_server(config, project_dir: str) -> t.Optional[subprocess.Popen]:
     """Start the main server process"""
     server_cfg = config.server
+    assets_cfg = config.assets
     entry_point = Path(project_dir) / server_cfg.entry_point
 
     if not entry_point.exists():
@@ -26,6 +26,9 @@ def run_server(config, project_dir: str) -> t.Optional[subprocess.Popen]:
             "QUILLION_QUIET": "1" if debugger.config.quiet else "0",
             "QUILLION_NO_COLOR": "1" if debugger.config.no_color else "0",
             "QUILLION_NO_FIGLET": "1" if debugger.config.no_figlet else "0",
+            "QUILLION_ASSET_HOST": assets_cfg.host,
+            "QUILLION_ASSET_PORT": str(assets_cfg.port),
+            "QUILLION_ASSET_PATH": assets_cfg.path,
         }
     )
 
@@ -34,7 +37,7 @@ def run_server(config, project_dir: str) -> t.Optional[subprocess.Popen]:
     try:
         return subprocess.Popen(cmd, cwd=project_dir, env=env)
     except Exception as e:
-        debugger.error(f"Cant start server: {e}")
+        debugger.error(f"Cannot run server: {e}")
         return None
 
 

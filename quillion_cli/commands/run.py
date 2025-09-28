@@ -84,6 +84,15 @@ def run_command(
     verbose_http: bool = typer.Option(
         False, "--verbose-http", help="Enable HTTP server logging"
     ),
+    assets_port: t.Optional[int] = typer.Option(
+        None, "--assets-port", help="Override assets server port from config"
+    ),
+    assets_host: t.Optional[str] = typer.Option(
+        None, "--assets-host", help="Override assets server host from config"
+    ),
+    assets_path: t.Optional[str] = typer.Option(
+        None, "--assets-path", help="Override assets path from config"
+    ),
 ):
     """Run Quillion development server with hot reload"""
     debugger.banner()
@@ -98,18 +107,19 @@ def run_command(
 
     if port is not None:
         config.server.port = port
-        debugger.info(f"Port overridden to: {port}")
     if host is not None:
         config.server.host = host
-        debugger.info(f"Host overridden to: {host}")
     if http_port is not None:
         config.http_server.port = http_port
-        debugger.info(f"HTTP port overridden to: {http_port}")
     if no_http:
         config.http_server.enabled = False
-        debugger.info("HTTP server disabled")
     if verbose_http:
         config.http_server.silent = False
-        debugger.info("HTTP server logging enabled")
+    if assets_port is not None:
+        config.assets.port = assets_port
+    if assets_host is not None:
+        config.assets.host = assets_host
+    if assets_path is not None:
+        config.assets.path = assets_path
 
     start_development_server(config, str(project_dir), hot_reload)

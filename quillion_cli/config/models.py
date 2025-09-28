@@ -19,6 +19,13 @@ class ServerConfig:
 
 
 @dataclass
+class AssetsConfig:
+    host: str = "127.0.0.1"
+    port: int = 1338
+    path: str = ""
+
+
+@dataclass
 class HttpServerConfig:
     enabled: bool = True
     host: str = "127.0.0.1"
@@ -55,3 +62,4 @@ class AppConfig:
     server: ServerConfig = field(default_factory=ServerConfig)
     http_server: HttpServerConfig = field(default_factory=HttpServerConfig)
     development: DevelopmentConfig = field(default_factory=DevelopmentConfig)
+    assets: AssetsConfig = field(default_factory=AssetsConfig)

@@ -5,7 +5,13 @@ from pathlib import Path
 
 import typer
 
-from .models import AppConfig, ServerConfig, HttpServerConfig, DevelopmentConfig
+from .models import (
+    AppConfig,
+    ServerConfig,
+    HttpServerConfig,
+    DevelopmentConfig,
+    AssetsConfig,
+)
 from ..debug.debugger import debugger
 
 
@@ -46,4 +52,5 @@ def load_config(project_dir: str = "./") -> AppConfig:
         server=ServerConfig(**merged_dict["server"]),
         http_server=HttpServerConfig(**merged_dict["http_server"]),
         development=DevelopmentConfig(**merged_dict["development"]),
+        assets=AssetsConfig(**merged_dict["assets"]),
     )

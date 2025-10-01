@@ -17,6 +17,7 @@ jobs:
       with:
         python-version: '3.11'
 
+    - name: Install black
       run: pip install black
 
     - name: Format

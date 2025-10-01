@@ -33,7 +33,6 @@ class HttpServerConfig:
     ssl: bool = False
     ssl_cert: t.Optional[str] = None
     ssl_key: t.Optional[str] = None
-    silent: bool = True
     packages_dir: str = ".q"
 
 

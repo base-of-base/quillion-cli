@@ -81,9 +81,6 @@ def run_command(
     no_http: bool = typer.Option(
         False, "--no-http", help="Disable HTTP server for static files"
     ),
-    verbose_http: bool = typer.Option(
-        False, "--verbose-http", help="Enable HTTP server logging"
-    ),
     assets_port: t.Optional[int] = typer.Option(
         None, "--assets-port", help="Override assets server port from config"
     ),
@@ -113,8 +110,6 @@ def run_command(
         config.http_server.port = http_port
     if no_http:
         config.http_server.enabled = False
-    if verbose_http:
-        config.http_server.silent = False
     if assets_port is not None:
         config.assets.port = assets_port
     if assets_host is not None:

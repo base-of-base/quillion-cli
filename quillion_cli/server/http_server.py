@@ -107,16 +107,12 @@ def start_http_server(
                 context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
                 context.load_cert_chain(cert_path, key_path)
                 httpd.socket = context.wrap_socket(httpd.socket, server_side=True)
-                debugger.success("SSL enabled for HTTP server")
 
         def run_server():
-            if not http_cfg.silent:
-                debugger.http_server_start(http_cfg.host, http_cfg.port, http_cfg.ssl)
             try:
                 httpd.serve_forever()
             except Exception as e:
-                if not http_cfg.silent:
-                    debugger.error(f"HTTP server exc: {e}")
+                debugger.error(f"HTTP server exc: {e}")
             finally:
                 os.chdir(original_cwd)
 

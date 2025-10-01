@@ -13,6 +13,7 @@ def new_command(
     port: int = typer.Option(1337, "--port", "-p", help="Default server port"),
     host: str = typer.Option("127.0.0.1", "--host", help="Default server host"),
     http_port: int = typer.Option(8000, "--http-port", help="Default HTTP server port"),
+    non_interactive: bool = typer.Option(False, "--non-interactive", "-y", help="Run in non-interactive mode (auto-confirm all prompts)"),
 ):
     """Create new Quillion project"""
     debugger.banner()
@@ -28,8 +29,9 @@ def new_command(
 
     if config_path.exists():
         debugger.warning("quillion.toml already exists in this directory")
-        if not typer.confirm("Overwrite existing config?"):
-            return
+        if not non_interactive:
+            if not typer.confirm("Overwrite existing config?"):
+                return
 
     context = {
         "project_name": name,

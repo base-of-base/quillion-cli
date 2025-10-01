@@ -13,7 +13,12 @@ def new_command(
     port: int = typer.Option(1337, "--port", "-p", help="Default server port"),
     host: str = typer.Option("127.0.0.1", "--host", help="Default server host"),
     http_port: int = typer.Option(8000, "--http-port", help="Default HTTP server port"),
-    non_interactive: bool = typer.Option(False, "--non-interactive", "-y", help="Run in non-interactive mode (auto-confirm all prompts)"),
+    non_interactive: bool = typer.Option(
+        False,
+        "--non-interactive",
+        "-y",
+        help="Run in non-interactive mode (auto-confirm all prompts)",
+    ),
 ):
     """Create new Quillion project"""
     debugger.banner()

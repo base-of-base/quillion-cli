@@ -15,6 +15,7 @@ q [command]
 Commands
 
 · new - Create project
+
 · run - Start server
 
 Quillion CLI is included with the Quillion framework installation.

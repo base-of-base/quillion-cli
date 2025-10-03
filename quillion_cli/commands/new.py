@@ -55,7 +55,5 @@ def new_command(
 
     process_templates(str(project_dir), context, templates_dir)
 
-    downloads_assets(project_dir)
-
     debugger.success(f"Project '{name}' created in {project_dir}")
     debugger.info(f"Run with: q run {name}")

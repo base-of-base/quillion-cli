@@ -9,6 +9,7 @@ from ..debug.debugger import debugger
 from ..server.http_server import start_http_server
 from ..server.websocket_server import run_server, restart_server, shutdown_server
 from ..utils.file_watcher import setup_file_watchers, shutdown_watchers
+from ..utils.file_downloader import downloads_assets  # Добавлен импорт
 
 
 def start_development_server(config, project_dir: str, hot_reload: bool = True):
@@ -99,6 +100,10 @@ def run_command(
     if not project_dir.exists():
         debugger.error(f"Project directory not found: {project_dir}")
         raise typer.Exit(1)
+
+    q_dir = project_dir / ".q" / "pkg"
+    if not q_dir.exists():
+        downloads_assets(project_dir)
 
     config = load_config(str(project_dir))
 

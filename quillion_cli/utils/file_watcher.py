@@ -52,7 +52,6 @@ def setup_file_watchers(
             observer.schedule(handler, str(full_path), recursive=True)
             observer.start()
             observers.append(observer)
-            debugger.info(f"Watching directory: {full_path}")
         else:
             debugger.warning(f"Watch directory not found: {full_path}")
 

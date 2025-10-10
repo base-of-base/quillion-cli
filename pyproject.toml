@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "quillion-cli"
-version = "0.1.3"
+version = "0.1.4"
 description = "Quillion Command Line Interface"
 authors = ["anybody"]
 readme = "README.md"

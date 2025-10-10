@@ -66,14 +66,14 @@ class Debugger:
             self.console.print("\n" + "─" * os.get_terminal_size().columns)
             self.console.print("Quillion Dev Server")
             self.console.print("─" * os.get_terminal_size().columns)
-            self.console.print("🚀 Server running!")
+            self.console.print("Server running!")
             self.console.print(f"Server:    {ws_protocol}://{host}:{server_port}")
             self.console.print(f"Frontend:  {protocol}://{host}:{http_port}")
             self.console.print("Press Ctrl+C to stop")
             self.console.print("─" * os.get_terminal_size().columns)
         else:
             panel = Panel(
-                f"[bold green]🚀 Server running![/]\n\n"
+                f"[bold green]Server running![/]\n\n"
                 f"[bold]Server:[/]    [cyan]{ws_protocol}://{host}:{server_port}[/]\n"
                 f"[bold]Frontend:[/]  [cyan]{protocol}://{host}:{http_port}[/]",
                 box=rich.box.ROUNDED,

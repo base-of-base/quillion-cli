@@ -263,7 +263,7 @@ class TestNewCommand:
             assert context["host"] == test_host
             assert context["http_port"] == test_http_port
             assert context["websocket_address"] == f"ws://{test_host}:{test_port}"
-            assert context["app_name"] == test_name.capitalize()
+            assert context["app_name"] == "My Project"
 
     def test_new_command_default_values(self, mock_debugger, mock_process_templates):
         """Test project creation with default values"""

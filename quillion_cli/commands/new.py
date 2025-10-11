@@ -2,7 +2,7 @@ import typing as t
 import typer
 from pathlib import Path
 
-from quillion_cli.utils.file_downloader import downloads_assets
+from quillion_cli.utils.name_formatter import format_app_name
 
 from ..debug.debugger import debugger
 from ..utils.templates import process_templates
@@ -44,7 +44,7 @@ def new_command(
         "host": host,
         "http_port": http_port,
         "websocket_address": f"ws://{host}:{port}",
-        "app_name": name.capitalize(),
+        "app_name": format_app_name(name),
     }
 
     templates_dir = Path(__file__).parent.parent / ".templates"

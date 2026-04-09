@@ -7,7 +7,6 @@ from .commands.run import run_command
 from .commands.new import new_command
 from .debug.debugger import debugger
 
-
 app = typer.Typer(help="Quillion CLI", pretty_exceptions_enable=False)
 
 

@@ -9,7 +9,7 @@ from ..debug.debugger import debugger
 from ..server.http_server import start_http_server
 from ..server.websocket_server import run_server, restart_server, shutdown_server
 from ..utils.file_watcher import setup_file_watchers, shutdown_watchers
-from ..utils.file_downloader import downloads_assets  # Добавлен импорт
+from ..utils.file_downloader import downloads_assets
 
 
 def start_development_server(config, project_dir: str, hot_reload: bool = True):
